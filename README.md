@@ -1,3 +1,3 @@
 ## Remei Ridorsa
 
-TBA
+Software Engineer
