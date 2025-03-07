@@ -15,14 +15,10 @@ jobs:
           node-version: '18'
       - run: npm install
       - run: npm run build
-      - name: Set up Git for gh-pages deployment
+      - name: Configure Git for Deployment
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
       - name: Deploy to GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          npm run deploy
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
-          git push origin gh-pages --force
+        run: npm run deploy
