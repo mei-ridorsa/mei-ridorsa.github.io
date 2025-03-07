@@ -2,6 +2,7 @@
   "name": "remei-ridorsa",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mei-ridorsa.github.io",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -17,6 +18,9 @@
     "styled-components": "^6.1.15",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
