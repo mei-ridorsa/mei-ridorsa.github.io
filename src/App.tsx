@@ -93,6 +93,21 @@ const App = () => {
         }
     }, []);
 
+    useEffect(() => {
+        document.title = "Remei Ridorsa";
+    }, []);
+
+    useEffect(() => {
+        console.log(
+            "%cHey, curious developer! 👀",
+            "color: #2D848A; font-size: 18px; font-weight: bold;"
+        );
+        console.log(
+            "%cHope you're enjoying exploring my page! 😊",
+            "color: #6096BA; font-size: 14px;"
+        );
+    }, []);
+
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
     };
