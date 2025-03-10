@@ -33,23 +33,23 @@ const darkTheme = {
     linkHover: "#6096BA",
 };
 
-
 const Container = styled.div`
     text-align: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: ${(props) => props.theme.cardBackground};
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
-
-    @media (prefers-color-scheme: dark) {
-        background: rgba(0, 0, 0, 0.5);
-    }
 `;
 
 const Title = styled.h1`
     font-size: 2rem;
+    margin-bottom: 10px;
+`;
+
+const Greeting = styled.p`
+    font-size: 1.2rem;
     margin-bottom: 10px;
 `;
 
@@ -64,18 +64,34 @@ const StyledLink = styled.a`
     color: ${(props) => props.theme.link};
     text-decoration: none;
     font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-weight: bold;
     transition: color 0.3s ease;
+
+    &:hover {
+        color: ${(props) => props.theme.linkHover};
+    }
 `;
 
 const App = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [greeting, setGreeting] = useState("");
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
     }, [theme]);
+
+    useEffect(() => {
+        const hour = new Date().getHours();
+        if (hour >= 22 || hour < 7) {
+            setGreeting("Good night! 🌙");
+        } else if (hour >= 7 && hour < 12) {
+            setGreeting("Good morning! ☀️");
+        } else if (hour >= 12 && hour < 19) {
+            setGreeting("Good afternoon! 🌅");
+        } else {
+            setGreeting("Good evening! 🌆");
+        }
+    }, []);
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -86,6 +102,7 @@ const App = () => {
             <GlobalStyle />
             <Container>
                 <Title>Hi, I'm Mei!</Title>
+                <Greeting>{greeting}</Greeting>
                 <LinksContainer>
                     <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
                         GitHub
