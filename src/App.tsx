@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
 const lightTheme = {
     body: "#f9f9f9",
-    text: "#121212",
+    text: "#e0e0e0",
     cardBackground: "#090302",
     link: "#2D848A",
     linkHover: "#6096BA",
