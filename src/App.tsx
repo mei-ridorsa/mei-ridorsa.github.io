@@ -122,7 +122,7 @@ const App = () => {
                     <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
                         GitHub
                     </StyledLink>
-                    <StyledLink href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+                    <StyledLink href="https://www.linkedin.com/in/meiridorsa/" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                     </StyledLink>
                 </LinksContainer>
