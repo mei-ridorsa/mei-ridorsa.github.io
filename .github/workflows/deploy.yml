@@ -18,8 +18,8 @@ jobs:
       - run: npm test -- --watchAll=false
         env:
           CI: true
-      - run: npx tsc --noEmit
-      - run: npx eslint src --max-warnings 0
+      - run: npm run typecheck
+      - run: npm run lint
 
   deploy:
     needs: ci
