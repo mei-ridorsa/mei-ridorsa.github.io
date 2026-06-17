@@ -17,22 +17,24 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const lightTheme = {
-    body: "#f9f9f9",
-    text: "#1a1a1a",
-    cardBackground: "#090302",
+const sharedTheme = {
     cardText: "#f5f5f5",
     link: "#2D848A",
     linkHover: "#6096BA",
 };
 
+const lightTheme = {
+    ...sharedTheme,
+    body: "#f9f9f9",
+    text: "#1a1a1a",
+    cardBackground: "#090302",
+};
+
 const darkTheme = {
+    ...sharedTheme,
     body: "#121212",
     text: "#e0e0e0",
     cardBackground: "#1e1e1e",
-    cardText: "#f5f5f5",
-    link: "#2D848A",
-    linkHover: "#6096BA",
 };
 
 const Container = styled.div`
