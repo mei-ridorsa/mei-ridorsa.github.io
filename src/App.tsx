@@ -66,6 +66,13 @@ const LinksContainer = styled.div`
     gap: 1rem;
 `;
 
+const getGreeting = (hour: number) => {
+    if (hour >= 22 || hour < 7) return "Good night! 🌙";
+    if (hour >= 7 && hour < 12) return "Good morning! ☀️";
+    if (hour >= 12 && hour < 19) return "Good afternoon! 🌅";
+    return "Good evening! 🌆";
+};
+
 const StyledLink = styled.a`
     color: ${(props) => props.theme.link};
     text-decoration: none;
@@ -91,24 +98,15 @@ const App = () => {
         try { return (localStorage.getItem("theme") as "light" | "dark") || "light"; }
         catch { return "light"; }
     });
-    const [greeting, setGreeting] = useState("");
+    const [greeting] = useState(() => getGreeting(new Date().getHours()));
 
     useEffect(() => {
-        localStorage.setItem("theme", theme);
-    }, [theme]);
-
-    useEffect(() => {
-        const hour = new Date().getHours();
-        if (hour >= 22 || hour < 7) {
-            setGreeting("Good night! 🌙");
-        } else if (hour >= 7 && hour < 12) {
-            setGreeting("Good morning! ☀️");
-        } else if (hour >= 12 && hour < 19) {
-            setGreeting("Good afternoon! 🌅");
-        } else {
-            setGreeting("Good evening! 🌆");
+        try {
+            localStorage.setItem("theme", theme);
+        } catch {
+            /* storage unavailable (private mode / experimental webstorage) */
         }
-    }, []);
+    }, [theme]);
 
     useEffect(() => {
         console.log(
