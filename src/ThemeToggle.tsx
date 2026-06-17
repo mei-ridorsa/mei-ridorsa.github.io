@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { FaSun, FaMoon } from "react-icons/fa";
 
+interface Props {
+    toggleTheme: () => void;
+    theme: string;
+}
+
 const ToggleButton = styled.button`
   position: fixed;
   bottom: 15px;
@@ -18,9 +23,9 @@ const ToggleButton = styled.button`
   }
 `;
 
-const ThemeToggle = ({ toggleTheme, theme }) => (
-    <ToggleButton onClick={toggleTheme}>
-        {theme === "light" ? <FaMoon /> : <FaSun />}
+const ThemeToggle = ({ toggleTheme, theme }: Props) => (
+    <ToggleButton onClick={toggleTheme} aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}>
+        {theme === "light" ? <FaMoon aria-hidden /> : <FaSun aria-hidden />}
     </ToggleButton>
 );
 
