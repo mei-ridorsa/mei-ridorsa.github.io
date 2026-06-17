@@ -1,79 +1,96 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import ThemeToggle from "./ThemeToggle";
+import { lightTheme, darkTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
     body {
         background-color: ${(props) => props.theme.body};
         color: ${(props) => props.theme.text};
         font-family: 'Poppins', sans-serif;
-        transition: all 0.3s ease;
         margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         min-height: 100vh;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
     }
 `;
 
-const lightTheme = {
-    body: "#f9f9f9",
-    text: "#e0e0e0",
-    cardBackground: "#090302",
-    link: "#2D848A",
-    linkHover: "#6096BA",
-};
 
-const darkTheme = {
-    body: "#121212",
-    text: "#e0e0e0",
-    cardBackground: "#1e1e1e",
-    link: "#2D848A",
-    linkHover: "#6096BA",
-};
+const Page = styled.main`
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+`;
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
     text-align: center;
     background: ${(props) => props.theme.cardBackground};
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    color: ${(props) => props.theme.cardText};
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px ${(props) => props.theme.shadow};
+    max-width: 380px;
     width: 100%;
 `;
 
 const Title = styled.h1`
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
 `;
 
 const Greeting = styled.p`
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.15rem;
+    color: ${(props) => props.theme.muted};
+    margin: 0;
 `;
 
 const LinksContainer = styled.div`
-    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 1rem;
 `;
 
 const StyledLink = styled.a`
     color: ${(props) => props.theme.link};
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
 
     &:hover {
         color: ${(props) => props.theme.linkHover};
+        background-color: ${(props) => props.theme.linkBg};
+        transform: translateY(-1px);
     }
 `;
 
 const App = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [theme, setTheme] = useState<"light" | "dark">(() => {
+        try { return (localStorage.getItem("theme") as "light" | "dark") || "light"; }
+        catch { return "light"; }
+    });
     const [greeting, setGreeting] = useState("");
 
     useEffect(() => {
@@ -94,10 +111,6 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        document.title = "Remei Ridorsa";
-    }, []);
-
-    useEffect(() => {
         console.log(
             "%cHey, curious developer! 👀",
             "color: #2D848A; font-size: 18px; font-weight: bold;"
@@ -115,18 +128,20 @@ const App = () => {
     return (
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
             <GlobalStyle />
-            <Container>
-                <Title>Hi, I'm Mei!</Title>
-                <Greeting>{greeting}</Greeting>
-                <LinksContainer>
-                    <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </StyledLink>
-                    <StyledLink href="https://www.linkedin.com/in/meiridorsa/" target="_blank" rel="noopener noreferrer">
-                        LinkedIn
-                    </StyledLink>
-                </LinksContainer>
-            </Container>
+            <Page>
+                <Container>
+                    <Title>Hi, I'm Mei!</Title>
+                    <Greeting>{greeting}</Greeting>
+                    <LinksContainer>
+                        <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </StyledLink>
+                        <StyledLink href="https://www.linkedin.com/in/meiridorsa/" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                        </StyledLink>
+                    </LinksContainer>
+                </Container>
+            </Page>
             <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
         </ThemeProvider>
     );

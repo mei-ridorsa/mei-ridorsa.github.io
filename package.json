@@ -1,5 +1,5 @@
 {
-  "name": "remei-ridorsa",
+  "name": "mei-ridorsa",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://mei-ridorsa.github.io",
@@ -17,8 +17,7 @@
     "react-icons": "^5.5.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.15",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "gh-pages": "^5.0.0"
