@@ -97,10 +97,6 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        document.title = "Remei Ridorsa";
-    }, []);
-
-    useEffect(() => {
         console.log(
             "%cHey, curious developer! 👀",
             "color: #2D848A; font-size: 18px; font-weight: bold;"
