@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { FaSun, FaMoon } from "react-icons/fa";
 
-const MoonIcon = FaMoon as unknown as React.FC;
-const SunIcon = FaSun as unknown as React.FC;
+const MoonIcon = (): React.ReactElement => FaMoon({}) as React.ReactElement;
+const SunIcon = (): React.ReactElement => FaSun({}) as React.ReactElement;
 
 interface Props {
     toggleTheme: () => void;
-    theme: string;
+    theme: "light" | "dark";
 }
 
 const ToggleButton = styled.button`
@@ -35,7 +35,9 @@ const ToggleButton = styled.button`
 
 const ThemeToggle = ({ toggleTheme, theme }: Props) => (
     <ToggleButton onClick={toggleTheme} aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}>
-        <span aria-hidden="true">{theme === "light" ? <MoonIcon /> : <SunIcon />}</span>
+        <span aria-hidden="true">
+            {theme === "light" ? <MoonIcon /> : <SunIcon />}
+        </span>
     </ToggleButton>
 );
 
