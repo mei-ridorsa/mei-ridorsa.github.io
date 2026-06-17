@@ -19,7 +19,7 @@ jobs:
         env:
           CI: true
       - run: npx tsc --noEmit
-      - run: npx eslint src
+      - run: npx eslint src --max-warnings 0
 
   deploy:
     needs: ci
