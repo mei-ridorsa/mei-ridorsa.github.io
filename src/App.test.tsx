@@ -29,7 +29,7 @@ describe('App Component', () => {
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/mei-ridorsa');
     expect(linkedinLink).toBeInTheDocument();
-    expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/your-profile');
+    expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/meiridorsa/');
   });
 
 });
