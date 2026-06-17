@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import ThemeToggle from "./ThemeToggle.tsx";
+import ThemeToggle from "./ThemeToggle";
 
 const GlobalStyle = createGlobalStyle`
     body {
