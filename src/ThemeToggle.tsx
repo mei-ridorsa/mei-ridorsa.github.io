@@ -12,16 +12,23 @@ interface Props {
 
 const ToggleButton = styled.button`
   position: fixed;
-  bottom: 15px;
-  right: 15px;
+  bottom: 1.25rem;
+  right: 1.25rem;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   color: ${(props) => props.theme.text};
-  transition: transform 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 999px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 
   &:hover {
+    background-color: ${(props) => props.theme.linkBg};
     transform: scale(1.1);
   }
 `;
