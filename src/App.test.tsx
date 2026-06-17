@@ -21,6 +21,16 @@ describe('App Component', () => {
     expect(screen.getByText(expectedGreeting)).toBeInTheDocument();
   });
 
+  test('renders main landmark', () => {
+    render(<App />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+
+  test('renders theme toggle button with accessible label', () => {
+    render(<App />);
+    expect(screen.getByRole('button', { name: /switch to (dark|light) theme/i })).toBeInTheDocument();
+  });
+
   test('renders GitHub and LinkedIn links', () => {
     render(<App />);
     const githubLink = screen.getByText(/GitHub/i);
