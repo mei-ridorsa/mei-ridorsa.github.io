@@ -19,8 +19,9 @@ const GlobalStyle = createGlobalStyle`
 
 const lightTheme = {
     body: "#f9f9f9",
-    text: "#e0e0e0",
+    text: "#1a1a1a",
     cardBackground: "#090302",
+    cardText: "#f5f5f5",
     link: "#2D848A",
     linkHover: "#6096BA",
 };
@@ -29,6 +30,7 @@ const darkTheme = {
     body: "#121212",
     text: "#e0e0e0",
     cardBackground: "#1e1e1e",
+    cardText: "#f5f5f5",
     link: "#2D848A",
     linkHover: "#6096BA",
 };
@@ -36,6 +38,7 @@ const darkTheme = {
 const Container = styled.div`
     text-align: center;
     background: ${(props) => props.theme.cardBackground};
+    color: ${(props) => props.theme.cardText};
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
