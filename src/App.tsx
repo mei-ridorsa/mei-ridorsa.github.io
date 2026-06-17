@@ -118,18 +118,20 @@ const App = () => {
     return (
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
             <GlobalStyle />
-            <Container>
-                <Title>Hi, I'm Mei!</Title>
-                <Greeting>{greeting}</Greeting>
-                <LinksContainer>
-                    <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </StyledLink>
-                    <StyledLink href="https://www.linkedin.com/in/meiridorsa/" target="_blank" rel="noopener noreferrer">
-                        LinkedIn
-                    </StyledLink>
-                </LinksContainer>
-            </Container>
+            <main>
+                <Container>
+                    <Title>Hi, I'm Mei!</Title>
+                    <Greeting>{greeting}</Greeting>
+                    <LinksContainer>
+                        <StyledLink href="https://github.com/mei-ridorsa" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </StyledLink>
+                        <StyledLink href="https://www.linkedin.com/in/meiridorsa/" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                        </StyledLink>
+                    </LinksContainer>
+                </Container>
+            </main>
             <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
         </ThemeProvider>
     );
